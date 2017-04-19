@@ -1,0 +1,146 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Smileypage.aspx.cs" Inherits="HPSR.Faculty.Smileypage" %>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <telerik:RadCodeBlock ID="RadCodeBlock2" runat="server">
+        <script type="text/javascript">
+            //<![CDATA[
+            function cmdClick(sender, args) {
+                mnuItem = args.get_item().get_value();
+                if (mnuItem == "Cancel") {
+                    close();
+                }
+            }
+            function confirmCallBackFn(arg) {
+                if (arg) close();
+            }
+
+
+            function radioMe(e) {
+                if (!e) e = window.event;
+                var sender = e.target || e.srcElement;
+
+                if (sender.nodeName != 'INPUT') return;
+                var checker = sender;
+                var chkBox = document.getElementById('<%= chks.ClientID %>');
+                var chks = chkBox.getElementsByTagName('INPUT');
+                for (i = 0; i < chks.length; i++) {
+                    if (chks[i] != checker)
+                        chks[i].checked = false;
+                }
+            }
+
+
+            //]]>
+        </script>
+    </telerik:RadCodeBlock>
+    <style type="text/css">
+        .auto-style1 {
+            width: 4px;
+        }
+        .auto-style2 {
+            width: 49px;
+        }
+    </style>
+</head>
+<body>
+    <form id="formfeedback" runat="server">
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+        </telerik:RadScriptManager>
+        
+        <div>
+            <center>
+                <table  >
+                    <tr>
+                        <td colspan="4">We want your Feedback</td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+
+                            <asp:CheckBoxList ID="chks"   runat="server"     AutoPostBack ="true" RepeatDirection="Horizontal">
+                                <asp:ListItem>Excellent</asp:ListItem>
+                                <asp:ListItem>VeryGood</asp:ListItem>
+                                <asp:ListItem>Good</asp:ListItem> 
+
+                                <asp:ListItem>NotGood</asp:ListItem>
+                                
+                            </asp:CheckBoxList></td>
+                    </tr>
+                    <tr>
+
+                        <td>
+
+                 <img src="../Images/Excellent2.jpg" /></td>
+                        <td>
+
+                 <img src="../Images/Very Good2.jpg" /></td>
+                        <td> 
+                 <img src="../Images/Good2.jpg" /></td>
+                        <td>
+
+                 <img src="../Images/NotGood.png" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="auto-style2">
+
+
+                            &nbsp;</td>
+
+                        <td class="auto-style1">
+                            &nbsp;</td>
+                    </tr>
+
+                    
+                    
+                    
+
+
+                    <tr>
+                        <td>
+
+
+                        </td>
+                        <td>
+
+
+                    <asp:Button ID="btnSubmit"   runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                      
+                           &nbsp; <asp:Button ID="btnLogout"  runat="server" Text="Logout" OnClick="btnLogout_Click" />
+                      
+
+
+                        </td>
+                        <td class="auto-style2">
+
+
+                    <telerik:RadToolBar ID="mainToolBar" runat="server" OnClientButtonClicked="cmdClick" Skin="" Style="z-index: 90001;" Height="53px" Width="35px">
+                        <Items>
+                            <telerik:RadToolBarButton runat="server" CausesValidation="False" CommandName="cmd_Cancel" ImageUrl="~/Images/cancel_32.png" PostBack="false" Text="Close" ToolTip="Cancel" Value="Cancel" />
+                        </Items>
+                    </telerik:RadToolBar>
+                    
+
+                        </td>
+
+                        <td class="auto-style1">
+
+                            
+                            </td>
+                    </tr>
+                    </table>
+                <br />
+                <div>
+                    
+                    <asp:Label ID="lblSave" runat="server" Text=""></asp:Label>
+                    
+                </div>
+            </center>
+        </div>
+    </form>
+</body>
+</html>
